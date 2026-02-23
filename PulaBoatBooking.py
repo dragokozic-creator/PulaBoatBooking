@@ -9,10 +9,15 @@ st.set_page_config(layout="wide") # Široki prikaz da stane više polja u red
 st.title("⛴️ Rezervacija Krstarenja")
 st.write("Popunite obrazac za rezervaciju vašeg putovanja.")
 
-# Povezivanje s Google tablicom (link zalijepi ovdje ili u secrets)
-url = "https://docs.google.com/spreadsheets/d/1gTvWomvCck2r9_ItoeEOaHIUMwvKSw9jRtZ055f7KPk/edit?usp=sharing"
+import streamlit as st
+from streamlit_gsheets import GSheetsConnection
+import pandas as pd
+
+# Inicijalizacija veze koristeći Secrets koje smo unijeli
 conn = st.connection("gsheets", type=GSheetsConnection)
 
+# URL tvoje tablice
+url = "https://docs.google.com/spreadsheets/d/1gTvWomvCck2r9_ItoeEOaHIUMwvKSw9jRtZ055f7KPk/edit?usp=sharing"
 
 
 # --- KONTAKT INFORMACIJE ---
