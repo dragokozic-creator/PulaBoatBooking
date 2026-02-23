@@ -3,6 +3,7 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import datetime
 
+
 st.set_page_config(layout="wide") # Široki prikaz da stane više polja u red
 
 st.title("⛴️ Rezervacija Krstarenja")
@@ -11,6 +12,8 @@ st.write("Popunite obrazac za rezervaciju vašeg putovanja.")
 # Povezivanje s Google tablicom (link zalijepi ovdje ili u secrets)
 url = "https://docs.google.com/spreadsheets/d/1gTvWomvCck2r9_ItoeEOaHIUMwvKSw9jRtZ055f7KPk/edit?usp=sharing"
 conn = st.connection("gsheets", type=GSheetsConnection)
+
+
 
 # --- KONTAKT INFORMACIJE ---
 col1, col2 = st.columns(2)
@@ -80,7 +83,7 @@ if st.button("Submit Booking"):
         
         
         # Čitanje postojećih i dodavanje novih
-        stari_podaci = conn.read(spreadsheet=url)
+        stari_podaci = conn.read(spreadsheet=url, usecols=list(range(15)))
         azurirani_podaci = pd.concat([stari_podaci, novi_podaci], ignore_index=True)
         
         # Slanje natrag u Google Sheets
